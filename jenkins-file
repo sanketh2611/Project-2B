@@ -67,7 +67,7 @@ pipeline{
                 "files": [
                     {
                         "pattern": "target/*.war",
-                        "target": "local-snapshot-repo/simple-maven-project/1.0-SNAPSHOT/",
+                        "target": "local-snapshot-repo1/simple-maven-project/1.0-SNAPSHOT/",
                         "props": "type=war;env=prod"
                     }
                 ]
@@ -78,7 +78,7 @@ pipeline{
         stage ('Tomcat Deployment') {
            steps {
              script {
-                 deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://localhost:9090')], contextPath: '/ecommerce', onFailure: false, war: 'target/webapp.war' 
+                 deploy adapters: [tomcat9(credentialsId: 'tomcat-credentials', path: '', url: 'http://localhost:9090')], contextPath: '/deployment', onFailure: false, war: 'target/webapp.war' 
                     }
                   }
            }
